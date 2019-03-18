@@ -9,7 +9,7 @@ State::State() : rainbow(false), renderUpdateTime(0.3f), currentRenderUpdateTime
 
 	this->font = new sf::Font();
 	this->font->loadFromFile("resources/fonts/arial.ttf");
-	this->text = new sf::Text("", *this->font, 10);
+	this->text = new sf::Text("", *this->font, 15); //10
 
 	this->text->setPosition(sf::Vector2f(400.f, 0.f));
 }

@@ -44,10 +44,12 @@ void Window::InitSTATE()
 	if (this->state != nullptr)
 		delete this->state;
 
-	if (sortType == 0)
+	if (this->sortType == 0)
 		this->state = new Selection_Sort_STATE();
-	else if (sortType == 1)
+	else if (this->sortType == 1)
 		this->state = new Merge_Sort_STATE();
+	else if (this->sortType == 2)
+		this->state = new Quick_Sort_STATE();
 }
 
 //Constructor/destructor
@@ -74,7 +76,7 @@ Window::~Window()
 
 void Window::updateState()
 {
-	int count_sorts = 2;
+	int count_sorts = 3;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		this->sortType = this->sortType == 0 ? count_sorts - 1 : sortType - 1;
