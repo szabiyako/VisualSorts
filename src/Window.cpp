@@ -50,6 +50,10 @@ void Window::InitSTATE()
 		this->state = new Merge_Sort_STATE();
 	else if (this->sortType == 2)
 		this->state = new Quick_Sort_STATE();
+	else if (this->sortType == 3)
+		this->state = new Shell_Sort_STATE();
+	else if (this->sortType == 4)
+		this->state = new Heap_Sort_STATE();
 }
 
 //Constructor/destructor
@@ -76,7 +80,7 @@ Window::~Window()
 
 void Window::updateState()
 {
-	int count_sorts = 3;
+	int count_sorts = 5;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		this->sortType = this->sortType == 0 ? count_sorts - 1 : sortType - 1;

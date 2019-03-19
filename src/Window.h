@@ -16,7 +16,8 @@
 #include "Selection_Sort_STATE.h"
 #include "Merge_Sort_STATE.h"
 #include "Quick_Sort_STATE.h"
-
+#include "Shell_Sort_STATE.h"
+#include "Heap_Sort_STATE.h"
 
 class Window
 {
