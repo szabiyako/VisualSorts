@@ -2,7 +2,7 @@
 
 
 
-Quick_Sort_STATE::Quick_Sort_STATE() : Stack(nullptr), isSort(false), reset_step(true), left(0), right(0), middle(0), main_element(0), main_index(0), main_left(0), main_right(0)
+Quick_Sort_STATE::Quick_Sort_STATE() : Stack(nullptr), isSort(false), reset_step(true), left(-1), right(-1), middle(0), main_element(0), main_index(-1), main_left(0), main_right(0)
 {
 	this->Stack = new std::stack<Positions>;
 	this->text->setString("Quick_Sort (delay off)");
@@ -161,7 +161,7 @@ void Quick_Sort_STATE::update(float & dt)
 	{
 		this->delay = this->delay ? false : true;
 		if (this->delay)
-			this->text->setString("Quick_Sort(delay on = 0.02 sec)");
+			this->text->setString("Quick_Sort (delay on = 0.02 sec)");
 		else
 			this->text->setString("Quick_Sort (delay off)");
 
@@ -170,13 +170,16 @@ void Quick_Sort_STATE::update(float & dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		int size = this->array->getSize();
-		this->array->recreateArray(size + 10);
-		this->array->FillNatural();
-		this->array->setRenderScale(sf::VideoMode(1280, 720));
+		if (size <= 630)
+		{
+			this->array->recreateArray(size + 10);
+			this->array->FillNatural();
+			this->array->setRenderScale(sf::VideoMode(1280, 720));
 
-		this->resetSort();
+			this->resetSort();
 
-		while (sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
+			while (sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{

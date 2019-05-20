@@ -28,16 +28,19 @@ void Selection_Sort_STATE::update(float &dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		int size = this->array->getSize();
-		this->array->recreateArray(size + 10);
-		this->array->FillNatural();
-		this->array->setRenderScale(sf::VideoMode(1280, 720));
+		if (size <= 630)
+		{
+			this->array->recreateArray(size + 10);
+			this->array->FillNatural();
+			this->array->setRenderScale(sf::VideoMode(1280, 720));
 
-		this->isSort = false;
-		this->i = -1;
-		this->j = -1;
-		this->min = 0;
+			this->isSort = false;
+			this->i = -1;
+			this->j = -1;
+			this->min = 0;
 
 		while (sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{

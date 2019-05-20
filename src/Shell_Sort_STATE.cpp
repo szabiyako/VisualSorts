@@ -2,7 +2,7 @@
 
 
 
-Shell_Sort_STATE::Shell_Sort_STATE() : current(-1), step(-1), isSort(false), start(0), stop_element(0)
+Shell_Sort_STATE::Shell_Sort_STATE() : current(-1), step(-2), isSort(false), start(0), stop_element(0)
 {
 	this->text->setString("Shell_Sort (delay off)");
 	this->renderUpdateTime = 0.005f;
@@ -80,7 +80,7 @@ void Shell_Sort_STATE::update(float & dt)
 	{
 		this->delay = this->delay ? false : true;
 		if (this->delay)
-			this->text->setString("Shell_Sort(delay on = 0.005 sec)");
+			this->text->setString("Shell_Sort (delay on = 0.005 sec)");
 		else
 			this->text->setString("Shell_Sort (delay off)");
 
@@ -89,13 +89,16 @@ void Shell_Sort_STATE::update(float & dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		int size = this->array->getSize();
-		this->array->recreateArray(size + 10);
-		this->array->FillNatural();
-		this->array->setRenderScale(sf::VideoMode(1280, 720));
+		if (size <= 630)
+		{
+			this->array->recreateArray(size + 10);
+			this->array->FillNatural();
+			this->array->setRenderScale(sf::VideoMode(1280, 720));
 
-		this->resetSort();
+			this->resetSort();
 
-		while (sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
+			while (sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
@@ -164,7 +167,17 @@ void Shell_Sort_STATE::render(sf::RenderTarget & window)
 {
 	window.draw(*this->text);
 	if (!this->rainbow)
-		this->array->render(window, this->current, sf::Color::Green, this->current - this->step, sf::Color::Red);
+	{
+		if (this->current == -1 && this->step == -2)
+			this->array->render(window, -1, sf::Color::Green, -1, sf::Color::Red);
+		else
+			this->array->render(window, this->current, sf::Color::Green, this->current - this->step, sf::Color::Red);
+	}
 	else
-		this->array->renderRainbow(window, this->current, sf::Color::White, this->current - this->step, sf::Color::White);
+	{
+		if (this->current == -1 && this->step == -2)
+			this->array->renderRainbow(window, -1, sf::Color::White, -1, sf::Color::White);
+		else
+			this->array->renderRainbow(window, this->current, sf::Color::White, this->current - this->step, sf::Color::White);
+	}
 }
